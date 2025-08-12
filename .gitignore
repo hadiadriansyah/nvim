@@ -1,0 +1,10 @@
+# Cache/temp files
+*.log
+swap/
+session/
+.tmp/
+# Mason download cache (opsional, kalau mau share semua LSP jangan ignore ini)
+.mason/
+# Node modules & virtualenv
+node_modules/
+venv/
