@@ -137,6 +137,52 @@ return {
 				end,
 				desc = "Buffers: close ALL (force, keep Neo-tree)",
 			},
+			-- Close OTHER buffers (keep only the current buffer)
+			{ "<leader>bo",
+				function()
+					-- Close all listed buffers except the current one (safe delete)
+					local bufremove = require("mini.bufremove")
+					local current = vim.api.nvim_get_current_buf()
+					for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+						if vim.bo[bufnr].buflisted and bufnr ~= current then
+							pcall(bufremove.delete, bufnr, false) -- false = safe delete
+						end
+					end
+				end,
+				desc = "Buffers: close OTHERS (safe, keep current only)",
+			},
+
+			-- Close OTHER buffers but keep Neo-tree (if you want the file explorer to stay)
+			{ "<leader>bO",
+				function()
+					-- Close all listed buffers except the current one and Neo-tree (safe delete)
+					local bufremove = require("mini.bufremove")
+					local current = vim.api.nvim_get_current_buf()
+					local keep_fts = { "neo-tree" } -- add more filetypes if you want to keep them
+					for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+						local ft = vim.bo[bufnr].filetype
+						if vim.bo[bufnr].buflisted and bufnr ~= current and not vim.tbl_contains(keep_fts, ft) then
+							pcall(bufremove.delete, bufnr, false)
+						end
+					end
+				end,
+				desc = "Buffers: close OTHERS (safe, keep current + Neo-tree)",
+			},
+
+			-- Force variant (use when some buffers are modified/blocked)
+			{ "<leader>bf",
+				function()
+					-- Force close all listed buffers except the current one
+					local bufremove = require("mini.bufremove")
+					local current = vim.api.nvim_get_current_buf()
+					for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+						if vim.bo[bufnr].buflisted and bufnr ~= current then
+							pcall(bufremove.delete, bufnr, true) -- true = force delete
+						end
+					end
+				end,
+				desc = "Buffers: close OTHERS (force, keep current only)",
+			},
 		},
   },
 }

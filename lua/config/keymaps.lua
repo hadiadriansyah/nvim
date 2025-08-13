@@ -11,7 +11,8 @@ local function nv(lhs, rhs, desc) map({ "n", "v" }, lhs, rhs, vim.tbl_extend("fo
 -- ======================
 -- General
 -- ======================
-n("<leader>q", ":q<CR>", "Quit")
+n("<leader>q", ":q<CR>", "Quit (Safe)")
+n("<leader>Q", ":q!<CR>", "Quit (force)")
 n("<leader>qa", ":qa<CR>", "Quit All (safe)")
 n("<leader>qA", ":qa!<CR>", "Quit All (force)")
 n("<leader>w", ":w<CR>", "Save")
