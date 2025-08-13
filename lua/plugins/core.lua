@@ -15,6 +15,11 @@ return {
       vim.cmd.colorscheme "tokyonight"
     end,
   },
+  {
+    "mg979/vim-visual-multi",
+    branch = "master",
+    event = "VeryLazy",
+  },
   -- File Explorer
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -33,7 +38,18 @@ return {
       },
       window = {
         width = 24,
-      }
+        mappings = {
+          ["z"]  = "none",
+          ["zc"] = "close_node",
+          ["zo"] = "open",
+          ["zM"] = "close_all_nodes",
+          ["zO"] = "expand_all_nodes",
+          ["l"] = "open",
+          ["h"] = "close_node",
+          ["o"] = "open",
+          ["<cr>"] = "open",
+        },
+      },
     },
     config = function(_, opts)
       require("neo-tree").setup(opts)

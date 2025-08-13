@@ -18,7 +18,7 @@ o.ignorecase = true
 o.smartcase = true
 
 -- Tabs/Indent
-o.expandtab = true
+-- o.expandtab = true
 o.shiftwidth = 2
 o.tabstop = 2
 o.smartindent = true
