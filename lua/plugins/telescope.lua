@@ -1,7 +1,7 @@
 return {
   { "nvim-telescope/telescope.nvim", version = "*", dependencies = { "nvim-lua/plenary.nvim" } },
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = function()
-      return require("config.utils").exists("make")
+      return require("utils.init").exists("make")
     end,
   },
   { "nvim-telescope/telescope-ui-select.nvim", version = "*" },
